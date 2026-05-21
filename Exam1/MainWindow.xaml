@@ -1,0 +1,131 @@
+<Window x:Class="PatientApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Patient App" Height="550" Width="850">
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ===== LEFT PANEL: Patients ListBox ===== -->
+        <StackPanel Grid.Column="0" Margin="0,0,16,0">
+            <TextBlock Text="Patients"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       Foreground="{DynamicResource PrimaryHueMidBrush}"
+                       Margin="0,0,0,8"/>
+
+            <!-- ListBoxItemAssist.ShowSelection retiré (non dispo en v3.x) -->
+            <ListBox x:Name="lstPatients"
+                     Height="450"
+                     SelectionChanged="lstPatients_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- ===== RIGHT PANEL ===== -->
+        <StackPanel Grid.Column="1">
+
+            <!-- Patient Details -->
+            <TextBlock Text="Patient Details"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       Foreground="{DynamicResource PrimaryHueMidBrush}"
+                       Margin="0,0,0,8"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- First Name -->
+                <TextBox x:Name="txtFirstName"
+                         Grid.Row="0" Grid.Column="0"
+                         Margin="0,0,8,8"
+                         materialDesign:HintAssist.Hint="Enter first name"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"
+                         Tag="Enter first name"/>
+
+                <!-- Surname -->
+                <TextBox x:Name="txtSurname"
+                         Grid.Row="0" Grid.Column="1"
+                         Margin="0,0,8,8"
+                         materialDesign:HintAssist.Hint="Enter surname"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"
+                         Tag="Enter surname"/>
+
+                <!-- Add Patient -->
+                <Button x:Name="btnAddPatient"
+                        Grid.Row="0" Grid.Column="2"
+                        Content="Add"
+                        Margin="0,0,0,8"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Click="btnAddPatient_Click"/>
+
+                <!-- Phone -->
+                <TextBox x:Name="txtPhone"
+                         Grid.Row="1" Grid.Column="0"
+                         Margin="0,0,8,8"
+                         materialDesign:HintAssist.Hint="Enter phone number"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"
+                         Tag="Enter phone number"/>
+
+                <!-- DOB -->
+                <DatePicker x:Name="dpDOB"
+                            Grid.Row="1" Grid.Column="1"
+                            Margin="0,0,8,8"
+                            materialDesign:HintAssist.Hint="DOB"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            </Grid>
+
+            <Separator Margin="0,8,0,8"/>
+
+            <!-- Appointments Section -->
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="Appointments"
+                           FontWeight="Bold"
+                           FontSize="18"
+                           Foreground="{DynamicResource PrimaryHueMidBrush}"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1">
+                    <Button x:Name="btnAddAppointment"
+                            Content="Add"
+                            Margin="0,0,0,4"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Click="btnAddAppointment_Click"/>
+                    <Button x:Name="btnEditAppointment"
+                            Content="Edit"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Click="btnEditAppointment_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <ListBox x:Name="lstAppointments" Height="200"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,66 @@
+<Window x:Class="PatientApp.AppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="AppointmentWindow" Height="420" Width="520"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Date + Time -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DatePicker x:Name="dpAppointmentDate"
+                        Grid.Column="0"
+                        Margin="0,0,8,0"
+                        materialDesign:HintAssist.Hint="Appointment Date"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+
+            <!-- TimePicker disponible dans MaterialDesignThemes v3+ -->
+            <materialDesign:TimePicker x:Name="tpAppointmentTime"
+                                       Grid.Column="1"
+                                       materialDesign:HintAssist.Hint="Appointment Time"
+                                       Is24Hours="True"/>
+        </Grid>
+
+        <!-- Notes Label -->
+        <TextBlock Grid.Row="1" Text="Notes" FontWeight="Medium" Margin="0,0,0,4"/>
+
+        <!-- Notes Text Area -->
+        <TextBox x:Name="txtNotes"
+                 Grid.Row="2"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Margin="0,0,0,12"/>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnAdd"
+                    Content="Add"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Click="btnAdd_Click"/>
+            <Button x:Name="btnUpdate"
+                    Content="Update"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Click="btnUpdate_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
